@@ -221,7 +221,7 @@ class FormComponent extends React.Component {
             <div>City: {this.state.city}</div>
             <div>PAN No: {this.state.panNo}</div>
             <div>Aadhar No: {this.state.aadharNo}</div> */}
-            <h3>THANK YOU! FOR YOUR DEATILS</h3>
+            <h3>THANK YOU! FOR YOUR DETAILS</h3>
           </div>
         ) : (
           <div>
