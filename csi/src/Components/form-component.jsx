@@ -213,7 +213,7 @@ class FormComponent extends React.Component {
         <h2>Form</h2>
         {this.state.isFormSubmitted ? (
           <div className="details">
-            <div>First Name: {this.state.firstName}</div>
+            {/* <div>First Name: {this.state.firstName}</div>
             <div>Last Name: {this.state.lastName}</div>
             <div>User Name: {this.state.userName}</div>
             <div>Email Address: {this.state.emailAddress}</div>
@@ -221,7 +221,8 @@ class FormComponent extends React.Component {
             <div>Country: {this.state.country}</div>
             <div>City: {this.state.city}</div>
             <div>PAN No: {this.state.panNo}</div>
-            <div>Aadhar No: {this.state.aadharNo}</div>
+            <div>Aadhar No: {this.state.aadharNo}</div> */}
+            <h3>THANK YOU! FOR YOUR DEATILS</h3>
           </div>
         ) : (
           <div>
@@ -393,7 +394,7 @@ class FormComponent extends React.Component {
               </div>
 
               <div style={{ flexBasis: "100%", textAlign: "center" }}>
-                <button type="submit">Signup</button>
+                <button type="submit">Submit</button>
               </div>
             </form>
           </div>
