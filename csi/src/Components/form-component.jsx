@@ -3,14 +3,13 @@ import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 
 const emailValidator = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/;
-// const passwordValidator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 const passwordValidator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[0-9a-zA-Z!@#$%^&*]{8,}$/;
 
 
 const countries = ["US", "India", "UK"];
 const cities = {
   US: ["New York", "Los Angeles", "Chicago"],
-  India: ["Mumbai", "Delhi", "Bangalore"],
+  India: ["Jaipur", "Delhi", "Bangalore"],
   UK: ["London", "Manchester", "Liverpool"],
 };
 

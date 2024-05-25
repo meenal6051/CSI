@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import FormComponent from "./Components/form-component";
-import SuccessComponent from "./Components/success-component";
 
 import "./styles.css";
 
