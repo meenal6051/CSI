@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: #8758ff;
+  background: #ab75de;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,13 +19,13 @@ body {
 }
 
 h1 {
-  color: #fff;
+  color: #bc6cf9;
   margin-bottom: 0.5rem;
   font-size: 1.75rem;
 }
 
 .TodoWrapper {
-  background: #1A1A40;
+  background: #662597;
   margin-top: 5rem;
   padding: 2rem;
   border-radius: 5px;
@@ -39,32 +39,33 @@ h1 {
 .todo-input {
   outline: none;
   background: none;
-  border: 1px solid #8758ff;
+  border: 1px solid #af8ccf;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
   width: 250px;
-  color: #fff;
+  color: #c68ff0;
 }
 
 .todo-input::placeholder {
-  color: #ffffff4d;
+  color: #c2b2dc;
 }
 
 .todo-btn {
-  background: #8758ff;
-  color: #fff;
+  background: #b87def;
+  color: #43077d;
   border: none;
   padding: 0.55rem;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .Todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #8758ff;
-  color: #fff;
+  background: #21023f;
+  color: #bc6cf9;
   padding: 0.75rem 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
@@ -75,12 +76,12 @@ h1 {
 }
 
 .incompleted {
-  color: #fff;
+  color: #bc6cf9;
   cursor: pointer;
 }
 
 .completed {
-  color: #c5aeff;
+  color: #c2b2dc;
   text-decoration: line-through;
   cursor: pointer;
 }
@@ -92,7 +93,6 @@ h1 {
 
 .dropdown {
   display: inline-block;
-  color: antiquewhite;
   margin-left: 10px;
 }
 
@@ -105,13 +105,12 @@ h1 {
 }
 
 .dropdown select {
-  margin-right: 10px;
-  background: #b5a3e2;
-  color: #fff;
+  background: #a95af4;
+  color: #43077d;
   border: none;
   padding: 0.55rem;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .dropdown select:focus {
