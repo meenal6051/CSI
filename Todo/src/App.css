@@ -8,7 +8,7 @@
 }
 
 body {
-  background: #a9c8f9;
+  background: #8758ff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,13 +19,13 @@ body {
 }
 
 h1 {
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 0.5rem;
   font-size: 1.75rem;
 }
 
 .TodoWrapper {
-  background: #833eec;
+  background: #1A1A40;
   margin-top: 5rem;
   padding: 2rem;
   border-radius: 5px;
@@ -39,21 +39,21 @@ h1 {
 .todo-input {
   outline: none;
   background: none;
-  border: 2px solid #8b67e6;
+  border: 1px solid #8758ff;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  width: 300px;
-  color: #ffffff;
+  width: 250px;
+  color: #fff;
 }
 
 .todo-input::placeholder {
-  color: #f2c4c44d;
+  color: #ffffff4d;
 }
 
 .todo-btn {
-  background: #361192;
-  color: #d5d5d5;
+  background: #8758ff;
+  color: #fff;
   border: none;
   padding: 0.55rem;
   cursor: pointer;
@@ -63,8 +63,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e0adfb;
-  color: #000000;
+  background: #8758ff;
+  color: #fff;
   padding: 0.75rem 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
@@ -89,55 +89,31 @@ h1 {
 .delete-icon {
   cursor: pointer;
 }
- 
 
-/* updated */
-
-/* .todo-input {
-  outline: none;
-  background: none;
-  border: 2px solid #8b67e6;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  width: 300px;
-  color: #ffffff;
-  position: relative;
-} */
-
-.dropdown-container {
-  position: relative;
+.dropdown {
   display: inline-block;
+  color: antiquewhite;
   margin-left: 10px;
 }
 
-.dropdown-icon {
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 1.5rem;
+.error {
+  color: red;
+  font-size: 0.75rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 
-.dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  background-color: #ffffff;
-  border: 1px solid #8b67e6;
-  border-radius: 5px;
-  margin-top: 5px;
-  z-index: 1;
-}
-
-.dropdown-menu button {
-  background: none;
+.dropdown select {
+  margin-right: 10px;
+  background: #b5a3e2;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  text-align: left;
+  padding: 0.55rem;
   cursor: pointer;
-  color: #833eec;
+  border-radius: 10px;
 }
 
-.dropdown-menu button:hover {
-  background-color: #e0adfb;
+.dropdown select:focus {
+  outline: none;
 }
-

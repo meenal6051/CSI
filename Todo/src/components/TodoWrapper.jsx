@@ -1,149 +1,102 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
-  const [todos, setTodos] = useState([]);
-  const [filter, setFilter] = useState('all');
-  const [sort, setSort] = useState('date');
+    const [todos, setTodos] = useState([]);
+    const [filter, setFilter] = useState('');
 
-  const addTodo = (todo) => {
-    setTodos([
-      ...todos,
-      { id: uuidv4(), task: todo, completed: false, isEditing: false, date: new Date() },
-    ]);
-  };
+    useEffect(() => {
+        const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        setTodos(savedTodos);
+    }, []);
 
-  const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
 
-  const toggleComplete = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+    const addTodo = (todo) => {
+        setTodos([
+            ...todos,
+            { id: uuidv4(), task: todo, completed: false, isEditing: false },
+        ]);
+    };
+
+    const deleteTodo = (id) => {
+        const newTodos = todos.filter((todo) => todo.id !== id);
+        setTodos(newTodos);
+    };
+
+    const toggleComplete = (id) => {
+        const newTodos = todos.map((todo) =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        );
+        setTodos(newTodos);
+    };
+
+    const editTodo = (id) => {
+        setTodos(
+            todos.map((todo) =>
+                todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo
+            )
+        );
+    };
+
+    const editTask = (task, id) => {
+        setTodos(
+            todos.map((todo) =>
+                todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
+            )
+        );
+    };
+
+    const sortTodos = (type) => {
+        let sortedTodos = [...todos];
+        if (type === 'alphabeticalAsc') {
+            sortedTodos.sort((a, b) => a.task.localeCompare(b.task));
+        } else if (type === 'alphabeticalDesc') {
+            sortedTodos.sort((a, b) => b.task.localeCompare(a.task));
+        }
+        // } else if (type === 'dateAsc') {
+        //     sortedTodos.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        // } else if (type === 'dateDesc') {
+        //     sortedTodos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        // }
+        setTodos(sortedTodos);
+    };
+
+    const filterTodos = (status) => {
+        setFilter(status);
+    };
+
+    const filteredTodos = todos.filter(todo => {
+        if (filter === 'completed') {
+            return todo.completed;
+        } else if (filter === 'incompleted') {
+            return !todo.completed;
+        }
+        return true;
+    });
+
+    return (
+        <div className="TodoWrapper">
+            <h1>Get Things Done!</h1>
+            <TodoForm addTodo={addTodo} sortTodos={sortTodos} filterTodos={filterTodos} />
+            {filteredTodos.map((todo) =>
+                todo.isEditing ? (
+                    <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
+                ) : (
+                    <Todo
+                        key={todo.id}
+                        task={todo}
+                        deleteTodo={deleteTodo}
+                        editTodo={editTodo}
+                        toggleComplete={toggleComplete}
+                    />
+                )
+            )}
+        </div>
     );
-  };
-
-  const editTodo = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo
-      )
-    );
-  };
-
-  const editTask = (task, id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
-      )
-    );
-  };
-
-  const filteredTodos = todos.filter(todo => {
-    if (filter === 'completed') return todo.completed;
-    if (filter === 'incomplete') return !todo.completed;
-    return true;
-  });
-
-  const sortedTodos = [...filteredTodos].sort((a, b) => {
-    if (sort === 'date') return new Date(b.date) - new Date(a.date);
-    if (sort === 'alphabetical') return a.task.localeCompare(b.task);
-    return 0;
-  });
-
-  return (
-    <div className="TodoWrapper">
-      <h1>Get Things Done!</h1>
-      <TodoForm addTodo={addTodo} />
-      <div className="filters">
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
-        <button onClick={() => setFilter('incomplete')}>Incomplete</button>
-        <button onClick={() => setSort('date')}>Sort by Date</button>
-        <button onClick={() => setSort('alphabetical')}>Sort by Alphabetical</button>
-      </div>
-      {sortedTodos.map((todo) =>
-        todo.isEditing ? (
-          <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
-        ) : (
-          <Todo
-            key={todo.id}
-            task={todo}
-            deleteTodo={deleteTodo}
-            editTodo={editTodo}
-            toggleComplete={toggleComplete}
-          />
-        )
-      )}
-    </div>
-  );
 };
-
-
-// original
-// import React, { useState } from "react";
-// import { Todo } from "./Todo";
-// import { TodoForm } from "./TodoForm";
-// import { v4 as uuidv4 } from "uuid";
-// import { EditTodoForm } from "./EditTodoForm";
-
-// export const TodoWrapper = () => {
-//   const [todos, setTodos] = useState([]);
-
-//   const addTodo = (todo) => {
-//     setTodos([
-//       ...todos,
-//       { id: uuidv4(), task: todo, completed: false, isEditing: false },
-//     ]);
-//   }
-
-//   const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
-
-//   const toggleComplete = (id) => {
-//     setTodos(
-//       todos.map((todo) =>
-//         todo.id === id ? { ...todo, completed: !todo.completed } : todo
-//       )
-//     );
-//   }
-
-//   const editTodo = (id) => {
-//     setTodos(
-//       todos.map((todo) =>
-//         todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo
-//       )
-//     );
-//   }
-
-//   const editTask = (task, id) => {
-//     setTodos(
-//       todos.map((todo) =>
-//         todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
-//       )
-//     );
-//   };
-
-//   return (
-//     <div className="TodoWrapper">
-//       <h1>Get Things Done !</h1>
-//       <TodoForm addTodo={addTodo} />
-//       {/* display todos */}
-//       {todos.map((todo) =>
-//         todo.isEditing ? (
-//           <EditTodoForm editTodo={editTask} task={todo} />
-//         ) : (
-//           <Todo
-//             key={todo.id}
-//             task={todo}
-//             deleteTodo={deleteTodo}
-//             editTodo={editTodo}
-//             toggleComplete={toggleComplete}
-//           />
-//         )
-//       )}
-//     </div>
-//   );
-// };
